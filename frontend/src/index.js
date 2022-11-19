@@ -4,6 +4,7 @@ import './index.css';
 import App from './pages/App';
 import Form from './pages/Form';
 import Dashboard from './pages/Dashboard';
+import Upload from './pages/Upload';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -14,6 +15,7 @@ root.render(
         <Route path="/" element={<App />}>
             <Route index element={<Dashboard />} />
             <Route path='form' element={<Form />} />
+            <Route path='upload' element={<Upload />} />
         </Route>
       </Routes>
     </BrowserRouter>
