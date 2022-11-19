@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import { Select, MenuItem, Button } from "@mui/material";
 import { InputLabel } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
@@ -32,59 +31,60 @@ const Form = () => {
     str =
       "I want a " + color + " " + theme + " " + subCategory + " web design.";
 
-    console.log(str);
-  };
+  console.log(str)
 
-  return (
-    <Div>
-      <ParentForm>
-        Design
-        <FormControl
-          style={{
-            width: "47%",
-            marginTop: "5%",
-          }}
-        >
-          <InputLabel id="demo-simple-select-label"> Sub Category</InputLabel>
-          <Select onChange={(e) => setSubCategory(e.target.value)}>
-            <MenuItem value={"E-Commerce"}>E-Commerce</MenuItem>
-            <MenuItem value={"Blog"}>Blog</MenuItem>
-            <MenuItem value={"Social Media"}>Social Media</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl
-          style={{
-            width: "47%",
-            marginTop: "5%",
-          }}
-        >
-          <InputLabel id="demo-simple-select-label">Theme</InputLabel>
-          <Select onChange={(e) => setTheme(e.target.value)}>
-            <MenuItem value={"Futureistic"}>Futuristic</MenuItem>
-            <MenuItem value={"Modern"}>Modern</MenuItem>
-            <MenuItem value={"Old School"}>Old School</MenuItem>
-            <MenuItem value={"Web 3"}>Web 3</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl
-          style={{
-            width: "47%",
-            marginTop: "5%",
-          }}
-        >
-          <InputLabel id="demo-simple-select-label">Color Theme</InputLabel>
-          <Select onChange={(e) => setColor(e.target.value)}>
-            <MenuItem value={"Black"}>Black</MenuItem>
-            <MenuItem value={"White"}>White</MenuItem>
-            <MenuItem value={"Orange"}>Orange</MenuItem>
-            <MenuItem value={"Brown"}>Brown</MenuItem>
-          </Select>
-        </FormControl>
-        <Button
-          type="submit"
-          onClick={() => {
-            handleSubmit();
-          }}
+ };
+ 
+ return (
+   <Div>
+     <ParentForm>
+       Design
+       <FormControl
+         style={{
+           width: "47%",
+           marginTop: "5%",
+         }}
+       >
+         <InputLabel id="demo-simple-select-label"> Sub Category</InputLabel>
+         <Select onChange={(e) => setSubCategory(e.target.value)}>
+           <MenuItem value={"E-Commerce"}>E-Commerce</MenuItem>
+           <MenuItem value={"Blog"}>Blog</MenuItem>
+           <MenuItem value={"Social Media"}>Social Media</MenuItem>
+         </Select>
+       </FormControl>
+       <FormControl
+         style={{
+           width: "47%",
+           marginTop: "5%",
+         }}
+       >
+         <InputLabel id="demo-simple-select-label">Theme</InputLabel>
+         <Select onChange={(e) => setTheme(e.target.value)}>
+           <MenuItem value={"Futureistic"}>Futuristic</MenuItem>
+           <MenuItem value={"Modern"}>Modern</MenuItem>
+           <MenuItem value={"Old School"}>Old School</MenuItem>
+           <MenuItem value={"Web 3"}>Web 3</MenuItem>
+         </Select>
+       </FormControl>
+       <FormControl
+         style={{
+           width: "47%",
+           marginTop: "5%",
+         }}
+       >
+         <InputLabel id="demo-simple-select-label">Color Theme</InputLabel>
+         <Select onChange={(e) => setColor(e.target.value)}>
+           <MenuItem value={"Black"}>Black</MenuItem>
+           <MenuItem value={"White"}>White</MenuItem>
+           <MenuItem value={"Orange"}>Orange</MenuItem>
+           <MenuItem value={"Brown"}>Brown</MenuItem>
+         </Select>
+       </FormControl>
+       <Button
+       type="submit"
+       onClick={() => {
+         handleSubmit();
+       }}
           variant="outlined"
           style={{
             marginTop: "5%",
@@ -100,24 +100,37 @@ const Form = () => {
         >
           Generate
         </Button>
-      </ParentForm>
-    </Div>
-  );
+     </ParentForm>
+   </Div>
+ );
 };
-
+ 
 const Div = styled.div`
-  padding: 20px;
-  margin: 10px;
+ padding: 20px;
+ margin: 10px;
 `;
 const ParentForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  font-family: "Sono", sans-serif;
-  margin: 0 20%;
-  padding: 15px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ font-size: 40px;
+ font-family: "Sono", sans-serif;
+ margin: 0 20%;
+ padding: 15px;
 `;
-
+ 
+const Category = styled.div`
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+ flex-direction: row;
+ font-weight: bold;
+ * {
+   margin-top: 20%;
+   left: 20%;
+ }
+`;
+ 
 export default Form;
+
