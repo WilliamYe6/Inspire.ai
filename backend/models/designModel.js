@@ -9,6 +9,14 @@ const designSchema = new mongoose.Schema({
         required: true,
         type: String
     },
+    likes: {
+        required: true,
+        type: Number
+    },
+    dislikes: {
+        required: true,
+        type: Number
+    },
     createdAt: {
         required: true,
         type: Date
