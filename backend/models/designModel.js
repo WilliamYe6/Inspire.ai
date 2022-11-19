@@ -20,6 +20,22 @@ const designSchema = new mongoose.Schema({
     createdAt: {
         required: true,
         type: Date
+    },
+    category: {
+        required: true,
+        type:String
+    },
+    subcategory: {
+        required: true,
+        type:String
+    },
+    theme: {
+        required: true,
+        type: String
+    },
+    color: {
+        required: true,
+        type: String
     }
 })
 

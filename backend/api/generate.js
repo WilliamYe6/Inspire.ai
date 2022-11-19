@@ -1,4 +1,4 @@
-const { Configuration, OpenAIApi } = require("openai");
+const { Configuration, OpenAIApi } = require("openai")
 require('dotenv').config({path: '../config.env'})
 
 const configuration = new Configuration({
@@ -13,8 +13,14 @@ const generate = async (prompt) => {
         n: 3,
         size: "1024x1024",
       });
-      images = response.data.data;
+    const images = response.data.data;
     return [images[0].url, images[1].url, images[2].url]
 }
+
+const thing = async () =>{
+    console.log(await generate('thing'))
+}
+
+thing()
 
 module.exports = generate;

@@ -5,8 +5,8 @@ import DesignDisplay from './DesignDisplay'
 const DesignsContainer = ({designs}) => {
     // console.log(designs[0].url)
 
-    const containerItems = designs.map((design) => 
-        <DesignDisplay url={design.url} />
+    const containerItems = designs.map((design, i) => 
+        <DesignDisplay url={design.url} key={i} />
     )
 
   return (
