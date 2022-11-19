@@ -4,6 +4,31 @@ import {FiThumbsUp, FiThumbsDown} from 'react-icons/fi'
 
 const DesignDisplay = ({url}) => {
 
+    const handleLike = async() => {
+        await fetch( "http://localhost:5000/api/postDesign", {
+        method: 'POST',
+        body: JSON.stringify({
+            name: 'thing',
+            url: 'google.com',
+            color: 'blue',
+            theme: 'red',
+            subcategory: 'red',
+            category: 'category'
+        }),
+        headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            // Handle data
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
+    }
+
   return (
     <ParentContainer>
             <Image src={url} alt="" />
@@ -11,6 +36,7 @@ const DesignDisplay = ({url}) => {
                 <FiThumbsUp className="icon"
                     size="30px"
                     color="green"
+                    onClick={handleLike}
                     />
                 <FiThumbsDown className="icon"
                     size="30px"
