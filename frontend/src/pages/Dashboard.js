@@ -18,9 +18,10 @@ const Dashboard = () => {
         }
     
         const designs = await response.json();
+        const n_designs = designs.slice(0, 3)
     
-        setDesigns(designs);
-        console.log(designs)
+        setDesigns(n_designs);
+        console.log(n_designs)
     }
     
     
