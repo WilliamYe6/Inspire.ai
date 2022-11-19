@@ -30,7 +30,7 @@ const generate = async (prompt) => {
     const response = await openai.createImage({
         prompt: prompt,
         n: 3,
-        size: "1024x1024",
+        size: "256x256",
       });
     const images = response.data.data;
     return [images[0].url, images[1].url, images[2].url]
