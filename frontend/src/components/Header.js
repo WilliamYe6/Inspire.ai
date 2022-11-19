@@ -1,30 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
   let navigate = useNavigate(); 
+  let location = useLocation();
 
-  const [selectedPage, setSelectedPage] = useState("");
+  const [selectedPage, setSelectedPage] = useState(location.pathname);
+
+  useEffect(() => {
+    toggleRouterButtonStyle(location.pathname);
+  }, [])
 
   const toggleRouterButtonStyle = (page) => {
     return (page === selectedPage) ? "red_highlight" : "no_highlight";
   }
 
   const navigateToForm = () => {
-    setSelectedPage("form");
+    setSelectedPage("/form");
     navigate("/form");
   }
 
   const navigateToDashboard = () => {
-    setSelectedPage("dashboard");
+    setSelectedPage("/");
     navigate("/");
   }
 
   return (
     <Div>
-      <FormRedirect className={toggleRouterButtonStyle("form")} onClick={() => {navigateToForm()}}>Form</FormRedirect>
-      <DashboardRedirect className={toggleRouterButtonStyle("dashboard")} onClick={() => {navigateToDashboard()}}>Dashboard</DashboardRedirect>
+      <FormRedirect className={toggleRouterButtonStyle("/form")} onClick={() => {navigateToForm()}}>Form</FormRedirect>
+      <DashboardRedirect className={toggleRouterButtonStyle("/")} onClick={() => {navigateToDashboard()}}>Dashboard</DashboardRedirect>
     </Div>
   );
 };
