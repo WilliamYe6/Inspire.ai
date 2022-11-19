@@ -1,5 +1,6 @@
+// require('dotenv').config({path: '../config.env'})
 const { Configuration, OpenAIApi } = require("openai")
-require('dotenv').config({path: '../config.env'})
+
 
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
@@ -20,7 +21,5 @@ const generate = async (prompt) => {
 const thing = async () =>{
     console.log(await generate('thing'))
 }
-
-thing()
 
 module.exports = generate;
