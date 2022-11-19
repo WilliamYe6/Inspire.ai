@@ -4,7 +4,7 @@ const mongoose = require("mongoose")
 const designRoutes = require('./routes/designRoutes')
 const openaiRoutes = require('./routes/openaiRoutes')
 require('dotenv').config({path: "./config.env"})
-const cors = require('cors')
+// const cors = require('cors')
 
 const app = express()
 app.use(cors())
@@ -59,10 +59,9 @@ router.post('/postPrompt', async (req, res) => {
 })
 
 
-const app = express()
+// const app = express()
 
-app.use(express.json())
-app.use('/api', designRoutes)
+
 app.use('/api', router)
 
 
