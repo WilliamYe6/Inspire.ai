@@ -1,35 +1,90 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
-/**
-
-div upload page 
-    div title=select output
-    grid repeat(3, 1fr);
-    div bottom
-        input uploadButton
-        refresh button
-  
- */
-
 const Upload = () => {
+
+    const [imageDescription, setImageDescription] = useState("");
+
+    const [selectedImagesObj, setSelectedImagesObj] = useState({
+        activeObj: null,
+        objects: [{id: 0}, {id: 1}, {id: 2}]
+    });
+
+    const [uploadedImageObj, setUploadedImageObj] = useState(null);
+
+    const toggleSelectedImage = (index) => {
+        setSelectedImagesObj({
+            ...selectedImagesObj, 
+            activeObj: selectedImagesObj.objects[index]
+        })
+    }
+
+    const toggleImageBorderStyle = (index) => {
+        return (selectedImagesObj.activeObj === selectedImagesObj.objects[index]) ? 'grid with_border' : 'grid without_border';
+    } 
+
+    const onChangeHandler = (desc) => {
+        setImageDescription(desc);
+    }
+
+    const onUploadHandler = () => {
+        // mock data: arr of 3 objs
+        const outputs = ["first_url", "second_url", "third_url"];
+
+        if (selectedImagesObj.activeObj === null) {
+            throw "you must select an output, or regenerate outputs";
+        }
+
+        console.log(outputs[selectedImagesObj.activeObj.id]);
+        const selected = outputs[selectedImagesObj.activeObj.id]
+
+        setUploadedImageObj({
+            name: imageDescription,
+            url: selected.url,
+            color: selected.color,
+            theme: selected.theme,
+            subcategory: selected.subcategory,
+            category: selected.category
+        })
+    }
+
     return (
-      <UploadContainer>
-        <UploadTitle>
+      <UploadContainer className='upload_container'>
+        <UploadTitle className='upload_title'>
             Select an output:
         </UploadTitle>
-        <GridContainer>
-            <Grid>
-                Grid 1
+        <GridContainer className='grid_container'>
+            {/* <Grid className='first_grid' onClick={(e) => {}}>
+                <img src='https://www.researchgate.net/profile/Tao-Chen-87/publication/3935609/figure/fig1/AS:394647298953219@1471102656485/8-bit-256-x-256-Grayscale-Lena-Image.png' />
             </Grid>
-            <Grid>
-                Grid 2
+            <Grid className='second_grid' onClick={(e) => {}}>
+                <img src='https://www.researchgate.net/profile/Tao-Chen-87/publication/3935609/figure/fig1/AS:394647298953219@1471102656485/8-bit-256-x-256-Grayscale-Lena-Image.png' />
             </Grid>
-            <Grid>
-                Grid 3
-            </Grid>
+            <Grid className='third_grid' onClick={(e) => {}}>
+             <img src='https://www.researchgate.net/profile/Tao-Chen-87/publication/3935609/figure/fig1/AS:394647298953219@1471102656485/8-bit-256-x-256-Grayscale-Lena-Image.png' />
+            </Grid> */}
+            {
+                selectedImagesObj.objects.map((element, index) => (
+                    <Grid key={index} className={toggleImageBorderStyle(index)} onClick={() => {toggleSelectedImage(index) }}>
+                        <img src='https://www.researchgate.net/profile/Tao-Chen-87/publication/3935609/figure/fig1/AS:394647298953219@1471102656485/8-bit-256-x-256-Grayscale-Lena-Image.png' />
+                    </Grid>
+                ))
+            }
         </GridContainer>
-
+        <SubmitContainer className='submit_container'>
+            <Placeholder className='placeholder_invisible'>
+                Refresh
+            </Placeholder>
+            <UploadForm className='upload_form'>
+                <UploadInput className='upload_input' placeholder='e.g. green cat with hat' type='text' value={imageDescription} onChange={(e) => onChangeHandler(e.target.value)} />
+                <UploadButton className='upload_button' onClick={(e) => onUploadHandler()}>
+                    Upload
+                </UploadButton>
+            </UploadForm>
+            <RefreshButton className='refresh_button' onSubmit={console.log("refreshed generated outputs")}>
+                Refresh
+            </RefreshButton>
+        </SubmitContainer>
       </UploadContainer>
     )
   }
@@ -38,25 +93,65 @@ const UploadContainer = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
+    margin: 20px 36px;
+    border: solid 1px black;
 `
 
 const UploadTitle = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: 20px;
 `
 
 const GridContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin: 20px 36px;
+    margin-top: 20px;
 `
 
 const Grid = styled.div`
-    width: 100%;
+    width: 256px;
+    height: 256px;
     margin: 0 24px;
-    border: solid 1px red;
+    cursor: pointer;
+    
+    &.with_border {
+        border: solid 2px red;
+    }
+
+    &.without_border {
+        border: solid 1px black;
+    }
+`
+
+const SubmitContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0;
+`
+
+const UploadForm = styled.div`
+
+`
+
+const UploadInput = styled.input`
+    width: 200px;
+    margin-right: 8px;
+`
+
+const UploadButton = styled.button`
+
+`
+
+const RefreshButton = styled.button`
+    margin-right: 24px;
+`
+
+const Placeholder = styled.button`
+    visibility: hidden;
 `
 
 export default Upload

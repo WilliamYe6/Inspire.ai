@@ -8,6 +8,10 @@ router.post('/postDesign', async (req, res) => {
     const data = new Design({
         name: req.body.name,
         url: req.body.url,
+        theme: req.body.theme,
+        color: req.body.theme,
+        category: req.body.category,
+        subcategory: req.body.subcategory,
         likes: 0,
         dislikes: 0,
         createdAt: Date.now()
