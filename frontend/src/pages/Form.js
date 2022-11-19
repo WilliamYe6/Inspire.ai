@@ -1,42 +1,37 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
 import { Select, MenuItem, Button } from "@mui/material";
 import { InputLabel } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 
 const Form = () => {
-  const [subCategory, setSubCategory] = useState("");
-  const [theme, setTheme] = useState("");
-  const [color, setColor] = useState("");
-  var str = "";
+  const [subCategory, setSubCategory] = useState();
+  const [theme, setTheme] = useState();
+  const [color, setColor] = useState();
 
   const handleSubmit = async (event) => {
+    console.log(color);
+    var str = " ";
+    console.log(str);
+
+    if (color == undefined) {
+      setColor(" ");
+    }
+
+    if (theme == undefined) {
+      setTheme(" ");
+      console.log(theme);
+    }
+
+    if (subCategory == undefined) {
+      setSubCategory(" ");
+    }
+
     str =
       "I want a " + color + " " + theme + " " + subCategory + " web design.";
-    const response = postString();
-    console.log(response);
-    return response;
-  };
 
-  async function postString() {
-    await fetch("http://localhost:5000/api/postPrompt", {
-      method: "POST",
-      body: JSON.stringify({
-        prompt: str,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }
+    console.log(str);
+  };
 
   return (
     <Div>
@@ -103,24 +98,37 @@ const Form = () => {
         >
           Generate
         </Button>
-      </ParentForm>
-    </Div>
-  );
+     </ParentForm>
+   </Div>
+ );
 };
-
+ 
 const Div = styled.div`
-  padding: 20px;
-  margin: 10px;
+ padding: 20px;
+ margin: 10px;
 `;
 const ParentForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  font-family: "Sono", sans-serif;
-  margin: 0 20%;
-  padding: 15px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ font-size: 40px;
+ font-family: "Sono", sans-serif;
+ margin: 0 20%;
+ padding: 15px;
 `;
-
+ 
+const Category = styled.div`
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+ flex-direction: row;
+ font-weight: bold;
+ * {
+   margin-top: 20%;
+   left: 20%;
+ }
+`;
+ 
 export default Form;
+

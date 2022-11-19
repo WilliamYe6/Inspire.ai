@@ -1,9 +1,16 @@
-const express = require('express')
-const mongoose = require('mongoose')
+const cors = require("cors");
+const express = require("express")
+const mongoose = require("mongoose")
 const designRoutes = require('./routes/designRoutes')
 const openaiRoutes = require('./routes/openaiRoutes')
 require('dotenv').config({path: "./config.env"})
 const cors = require('cors')
+
+const app = express()
+app.use(cors())
+app.use(express.json())
+app.use('/api', designRoutes)
+
 
 const mongoString = process.env.DATABASE_URL
 
@@ -53,9 +60,6 @@ router.post('/postPrompt', async (req, res) => {
 
 
 const app = express()
-app.use(cors())
-
-
 
 app.use(express.json())
 app.use('/api', designRoutes)
