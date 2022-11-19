@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ReactDOM from "react-dom/client";
+
 import { Select, MenuItem, Button } from "@mui/material";
 import { InputLabel } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
@@ -13,17 +13,29 @@ const Form = () => {
  const [color, setColor] = useState();
  
  const handleSubmit = async (event) => {
-   if (subCategory != null) {
-     console.log(subCategory);
-   }
- 
-   if (theme != null) {
-     console.log(theme);
-   }
- 
-   if (color != null) {
-     console.log(color);
-   }
+  console.log(color)
+  var str = " ";
+  console.log(str)
+
+
+  if(color == undefined){
+   setColor(" ")
+  }
+
+  if(theme == undefined){
+    setTheme(" ")
+    console.log(theme)
+
+  }
+
+  if(subCategory == undefined){
+    setSubCategory(" ")
+  }
+
+  str = "I want a " + color +" "+ theme + " " + subCategory +" web design.";
+
+  console.log(str)
+
  };
  
  return (
@@ -64,7 +76,7 @@ const Form = () => {
          }}
        >
          <InputLabel id="demo-simple-select-label">Color Theme</InputLabel>
-         <Select onChange={(e) => setColor(e.event.value)}>
+         <Select onChange={(e) => setColor(e.target.value)}>
            <MenuItem value={"Black"}>Black</MenuItem>
            <MenuItem value={"White"}>White</MenuItem>
            <MenuItem value={"Orange"}>Orange</MenuItem>
