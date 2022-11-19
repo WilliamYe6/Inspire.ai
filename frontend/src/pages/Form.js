@@ -9,11 +9,12 @@ const Form = () => {
   const [subCategory, setSubCategory] = useState();
   const [theme, setTheme] = useState();
   const [color, setColor] = useState();
+  var str = " ";
 
   const handleSubmit = async (event) => {
     console.log(color);
-    var str = " ";
-    console.log(str);
+
+ 
 
     if (color == undefined) {
       setColor(" ");
@@ -31,9 +32,33 @@ const Form = () => {
     str =
       "I want a " + color + " " + theme + " " + subCategory + " web design.";
 
-  console.log(str)
+  postString()
 
  };
+
+ async function postString(){
+  await fetch( "http://localhost:5000/api/postPrompt", {
+    method: 'POST',
+    body: JSON.stringify({
+      prompt: str
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
+     .then((response) => response.json())
+     .then((data) => {
+        console.log(data);
+        // Handle data
+     })
+     .catch((err) => {
+        console.log(err.message);
+     });
+}
+
+
+ 
+
  
  return (
    <Div>
