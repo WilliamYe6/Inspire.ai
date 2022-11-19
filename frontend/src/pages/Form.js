@@ -59,14 +59,16 @@ const Form = () => {
           style={{
             marginTop: "5%",
             position: "relative",
-            borderRadius: "25px",
-            color: "black",
-            borderColor: "blue",
+            borderRadius: "5px",
+            color: "white",
+            borderColor: "black",
             borderWidth: "2px",
             width: "20%",
+            backgroundColor: "black",
+            fontFamily: "Sono, sans-serif",
           }}
         >
-          Generate Image
+          Generate
         </Button>
 
       </ParentForm>
