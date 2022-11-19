@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const designRoutes = require('./routes/designRoutes')
 const openaiRoutes = require('./routes/openaiRoutes')
 require('dotenv').config({path: "./config.env"})
+const cors = require('cors')
 
 const mongoString = process.env.DATABASE_URL
 
@@ -52,6 +53,9 @@ router.post('/postPrompt', async (req, res) => {
 
 
 const app = express()
+app.use(cors())
+
+
 
 app.use(express.json())
 app.use('/api', designRoutes)
@@ -64,6 +68,8 @@ app.listen(port, (err) => {
 
     console.log(`server started on port ${port}`)
 })
+
+
 
 
 
