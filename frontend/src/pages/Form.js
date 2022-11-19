@@ -1,39 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { Select, MenuItem, Button } from "@mui/material";
 import { InputLabel } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
-import { useState } from "react";
 
 const Form = () => {
-  const [subCategory, setSubCategory] = useState();
-  const [theme, setTheme] = useState();
-  const [color, setColor] = useState();
+  const [subCategory, setSubCategory] = useState("");
+  const [theme, setTheme] = useState("");
+  const [color, setColor] = useState("");
+  var str = "";
 
   const handleSubmit = async (event) => {
-    console.log(color);
-    var str = " ";
-    console.log(str);
-
-    if (color == undefined) {
-      setColor(" ");
-    }
-
-    if (theme == undefined) {
-      setTheme(" ");
-      console.log(theme);
-    }
-
-    if (subCategory == undefined) {
-      setSubCategory(" ");
-    }
-
     str =
       "I want a " + color + " " + theme + " " + subCategory + " web design.";
-
-    console.log(str);
+    const response = postString();
+    console.log(response);
+    return response;
   };
+
+  async function postString() {
+    await fetch("http://localhost:5000/api/postPrompt", {
+      method: "POST",
+      body: JSON.stringify({
+        prompt: str,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
 
   return (
     <Div>
