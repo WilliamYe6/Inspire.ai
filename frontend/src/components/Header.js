@@ -64,7 +64,7 @@ const DashboardRedirect = styled.div`
   cursor: pointer;
 
   &.red_highlight {
-    color: red
+    color: #2992a7
   }
 
   &.without_highlight {
