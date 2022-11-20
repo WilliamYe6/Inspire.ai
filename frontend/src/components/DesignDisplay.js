@@ -73,11 +73,13 @@ const Image = styled.img`
 `
 
 const ParentContainer = styled.div`
+    max-width: 30%;
     display:flex;
     flex-direction:column;
     align-items:space-between;
     justify-content:center;
     padding:10px;
+    max-height: 30%;
 `
 const ButtonBox = styled.div`
     margin-top: 15px;

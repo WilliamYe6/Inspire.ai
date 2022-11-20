@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const Upload = () => {
+const Upload = ({form}) => {
 
     const [imageDescription, setImageDescription] = useState("");
 
