@@ -27,7 +27,7 @@ const Dashboard = () => {
 
         
         const shuffled = algo(designs)
-        const n_designs = shuffled.slice(0,3)
+        const n_designs = shuffled.slice(0,4)
         setDesigns(n_designs)
         console.log(n_designs)
     }
