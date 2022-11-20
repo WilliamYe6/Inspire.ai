@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 
 const Upload = () => {
+
+    const navigate = useNavigate();
 
     const [imageDescription, setImageDescription] = useState("");
 
@@ -48,8 +51,9 @@ const Upload = () => {
             .catch((err) => {
                 console.log(err.message);
             });
-
-    }
+    
+        navigate('/');
+    }   
 
     return (
         <UploadContainer className='upload_container'>
