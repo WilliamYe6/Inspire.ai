@@ -3,3 +3,23 @@
   padding:0;
   font-family: 'Sono', sans-serif;
 }
+html {
+	background-color: #f6f6f7;
+	height: 100%;
+}
+
+body {
+	display: flex;        
+	flex-direction: column;
+ 
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0px;
+	font-feature-settings: "ss01";
+	text-rendering: optimizeLegibility;
+	font-family: "Inter", sans-serif;
+	background-color: #f6f6f7;
+	background: linear-gradient(90deg, #f6f6f7 28px, transparent 1%) center, linear-gradient(#f6f6f7 28px, transparent 1%) center, #cbcbcd;
+	background-size: 30px 30px;
+}

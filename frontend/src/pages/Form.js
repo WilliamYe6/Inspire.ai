@@ -15,14 +15,14 @@ const Form = ({design, setDesign}) => {
   const [subCategory, setSubCategory] = useState('');
   const [theme, setTheme] = useState('');
   const [color, setColor] = useState('');
+  const [site, setSite] = useState('');
   const [loading, setLoading] = useState(false)
   var str = " ";
 
   const handleSubmit = async (event) => {
     console.log(color);
 
-    str =
-      "I want a " + color + " " + theme + " " + subCategory + " web design.";
+    str =  "A " + color + " " + theme + " " + subCategory + " web design site like " + site;
 
   postString()
 
@@ -73,7 +73,7 @@ const Form = ({design, setDesign}) => {
    <Div>
     { !loading ? 
      <ParentForm>
-       Design
+       <H1>Design</H1>
        <FormControl
          style={{
            width: "47%",
@@ -109,12 +109,27 @@ const Form = ({design, setDesign}) => {
        >
          <InputLabel id="demo-simple-select-label">Color Theme</InputLabel>
          <Select onChange={(e) => setColor(e.target.value)}>
-           <MenuItem value={"Black"}>Black</MenuItem>
-           <MenuItem value={"White"}>White</MenuItem>
-           <MenuItem value={"Orange"}>Orange</MenuItem>
-           <MenuItem value={"Brown"}>Brown</MenuItem>
+           <MenuItem value={"vibrant"}>Vibrant</MenuItem>
+           <MenuItem value={"spooky"}> Spooky</MenuItem>
+           <MenuItem value={"sombre"}>Sombre</MenuItem>
+           <MenuItem value={"rich"}>Rich</MenuItem>
          </Select>
        </FormControl>
+
+       <FormControl
+        style={{
+          width: "47%",
+          marginTop: "5%",
+        }}>
+       <InputLabel id="demo-simple-select-label">Set Site</InputLabel>
+         <Select onChange={(e) => setSite(e.target.value)}>
+           <MenuItem value={"amazon"}>Amazon</MenuItem>
+           <MenuItem value={"shopify"}>Shopify</MenuItem>
+           <MenuItem value={"pinterest"}>Pinterest</MenuItem>
+           <MenuItem value={"facebook"}>Facebook</MenuItem>
+         </Select>
+         </FormControl>
+      
        <Button
        type="submit"
        onClick={() => {
@@ -144,6 +159,11 @@ const Form = ({design, setDesign}) => {
    </Div>
  );
 };
+
+const H1 = styled.p`
+border-bottom: 1px solid black
+
+`
  
 const Div = styled.div`
  padding: 20px;
@@ -171,7 +191,11 @@ const ParentForm = styled.div`
  font-size: 40px;
  font-family: "Sono", sans-serif;
  margin: 0 20%;
- padding: 15px;
+ padding: 30px 0;
+ background-color: white;
+ box-shadow: 1px 1px 10px grey;
+ border-radius: 30px;
+ 
 `;
  
 const Category = styled.div`

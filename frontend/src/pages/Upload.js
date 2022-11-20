@@ -90,12 +90,15 @@ const Upload = () => {
 const UploadContainer = styled.div`
     display: flex;
     flex-direction: column;
-    height: 100%;
-    margin: 20px 36px;
-    border: solid 1px black;
+    /* height: 100%; */
+    margin: 40px 36px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 2px 5px 8px grey;
 `
 
 const UploadTitle = styled.div`
+
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -132,20 +135,28 @@ const SubmitContainer = styled.div`
 `
 
 const UploadForm = styled.div`
-
+    margin-top: 20px;
 `
 
 const UploadInput = styled.input`
-    width: 200px;
+    width: 300px;
     margin-right: 8px;
+    padding: 10px;
 `
 
 const UploadButton = styled.button`
-
+    background-color:white;
+    border-radius: 5px;
+    padding:10px;
+    border: 1px solid black;
+    &:hover{
+        cursor: pointer;
+    }
 `
 
 const RefreshButton = styled.button`
-    margin-right: 24px;
+    margin-right: 30px;
+
 `
 
 const Placeholder = styled.button`

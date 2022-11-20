@@ -14,10 +14,10 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-            <Route index element={<Dashboard />} />
+            <Route index element={<Leaderboard />} />
             <Route path='form' element={<Form />} />
             <Route path='upload' element={<Upload />} />
-            <Route path='leaderboard' element={<Leaderboard />} />
+            <Route path='leaderboard' element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

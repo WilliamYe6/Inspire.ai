@@ -11,7 +11,7 @@ const Leaderboard = () => {
   
     useEffect(() => {
       async function getDesigns(){
-        const response = await fetch(`http://localhost:5000/api/getAllDesigns`)
+        const response = await fetch(`http://localhost:5000/api/getAllDesigns_date`)
   
         if (!response.ok) {
           const message = `An error has occurred: ${response.statusText}`;
@@ -22,16 +22,16 @@ const Leaderboard = () => {
           const designs = await response.json();
          
           
-          designs.sort((a,b)=>a.likes-b.likes)
+        //   designs.sort((a,b)=>a.likes-b.likes)
 
-          console.log(designs)
+        //   console.log(designs)
           //const ratioAlgo = designs.map((design) => design.likes -Math.random())
           //ratioAlgo.sort()
           //const n_designs = ratioAlgo.slice(0, 6) //want objects with this
-          const ordered = algo(designs)
-          const n_designs = ordered 
-          setDesigns(n_designs)
-          console.log(n_designs)
+        //   const ordered = algo(designs)
+        //   const n_designs = ordered 
+          setDesigns(designs.reverse())
+          console.log(designs)
       }
       
       

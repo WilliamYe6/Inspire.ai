@@ -81,6 +81,13 @@ const ParentContainer = styled.div`
     justify-content:center;
     padding:10px;
     max-height: 30%;
+    box-shadow: 5px 5px 15px grey;
+    border-radius: 10px;
+    transition-duration: 0.5s;
+    margin: 10px;
+    &:hover{
+        transform: scale(1.05);
+    }
 `
 const ButtonBox = styled.div`
     margin-top: 15px;
