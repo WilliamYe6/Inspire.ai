@@ -22,6 +22,9 @@ const Leaderboard = () => {
           const designs = await response.json();
          
           
+          designs.sort((a,b)=>a.likes-b.likes)
+
+          console.log(designs)
           //const ratioAlgo = designs.map((design) => design.likes -Math.random())
           //ratioAlgo.sort()
           //const n_designs = ratioAlgo.slice(0, 6) //want objects with this

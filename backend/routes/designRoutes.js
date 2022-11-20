@@ -9,7 +9,7 @@ router.post('/postDesign', async (req, res) => {
         name: req.body.name,
         url: req.body.url,
         theme: req.body.theme,
-        color: req.body.theme,
+        color: req.body.color,
         category: req.body.category,
         subcategory: req.body.subcategory,
         likes: 0,
