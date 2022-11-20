@@ -28,7 +28,19 @@ router.post('/postDesign', async (req, res) => {
 //Get all Method
 router.get('/getAllDesigns', async (req, res) => {
     try{
-        const data = await Design.find()
+        const data = await Design.find().sort({'likes':1})
+        // console.log(data)
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
+router.get('/getAllDesigns_date', async (req, res) => {
+    try{
+        const data = await Design.find().sort({'createdAt':1})
+        // console.log(data)
         res.json(data)
     }
     catch(error){

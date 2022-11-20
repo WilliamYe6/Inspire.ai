@@ -84,6 +84,7 @@ const ParentContainer = styled.div`
     box-shadow: 5px 5px 15px grey;
     border-radius: 10px;
     transition-duration: 0.5s;
+    margin: 10px;
     &:hover{
         transform: scale(1.05);
     }
