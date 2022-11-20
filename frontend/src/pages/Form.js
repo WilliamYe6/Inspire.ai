@@ -161,7 +161,8 @@ const Form = ({design, setDesign}) => {
 };
 
 const H1 = styled.p`
-border-bottom: 1px solid black
+  border-bottom: 1px solid black;
+  font-size: 20px;
 
 `
  
