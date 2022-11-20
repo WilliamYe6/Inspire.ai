@@ -15,14 +15,14 @@ const Form = ({design, setDesign}) => {
   const [subCategory, setSubCategory] = useState('');
   const [theme, setTheme] = useState('');
   const [color, setColor] = useState('');
+  const [site, setSite] = useState('');
   const [loading, setLoading] = useState(false)
   var str = " ";
 
   const handleSubmit = async (event) => {
     console.log(color);
 
-    str =
-      "I want a " + color + " " + theme + " " + subCategory + " web design.";
+    str =  "A " + color + " " + theme + " " + subCategory + " web design site like " + site;
 
   postString()
 
@@ -115,6 +115,21 @@ const Form = ({design, setDesign}) => {
            <MenuItem value={"Brown"}>Brown</MenuItem>
          </Select>
        </FormControl>
+
+
+       <FormControl
+        style={{
+          width: "47%",
+          marginTop: "5%",
+        }}>
+       <InputLabel id="demo-simple-select-label">Set Site</InputLabel>
+         <Select onChange={(e) => setSite(e.target.value)}>
+           <MenuItem value={"amazon"}>Amazon</MenuItem>
+           <MenuItem value={"shopify"}>Shopify</MenuItem>
+           <MenuItem value={"pinterest"}>Pinterest</MenuItem>
+           <MenuItem value={"facebook"}>Facebook</MenuItem>
+         </Select>
+         </FormControl>
        <Button
        type="submit"
        onClick={() => {
