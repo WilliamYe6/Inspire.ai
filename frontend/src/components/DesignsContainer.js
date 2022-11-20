@@ -18,9 +18,9 @@ const Container = styled.div`
     display:flex;
     flex-wrap: wrap;
     align-items:center;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-direction:row;
-    width:80%;
+    width:90%;
     z-index: 100;
 `
 
