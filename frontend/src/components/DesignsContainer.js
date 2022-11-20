@@ -21,6 +21,7 @@ const Container = styled.div`
     justify-content: space-between;
     flex-direction:row;
     width:80%;
+    z-index: 100;
 `
 
 
