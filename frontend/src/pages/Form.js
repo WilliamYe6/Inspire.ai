@@ -30,6 +30,7 @@ const Form = ({design, setDesign}) => {
 
  async function postString(){
   setLoading(true)
+  console.log("string: ", str)
   console.log(loading)
   await fetch( "http://localhost:5000/api/postPrompt", {
     method: 'POST',
@@ -61,6 +62,7 @@ const Form = ({design, setDesign}) => {
      .catch((err) => {
         console.log(err.message);
      });
+
 }
 
 
@@ -136,7 +138,7 @@ const Form = ({design, setDesign}) => {
      </ParentForm>
      :
      <LoaderDiv>
-      <Title>It's Loading, be patient...</Title>
+      <Title>Generating outputs ...</Title>
       <BounceLoader color="#395470" size={150}/>
      </LoaderDiv> }
    </Div>

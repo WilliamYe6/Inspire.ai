@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-const Upload = ({form}) => {
+const Upload = () => {
 
     const [imageDescription, setImageDescription] = useState("");
 
@@ -9,8 +9,6 @@ const Upload = ({form}) => {
         activeObj: null,
         objects: [{ id: 0 }, { id: 1 }, { id: 2 }]
     });
-
-    const [uploadedImageObj, setUploadedImageObj] = useState(null);
 
     const toggleSelectedImage = (index) => {
         setSelectedImagesObj({
@@ -27,15 +25,15 @@ const Upload = ({form}) => {
         setImageDescription(desc);
     }
 
-    const onUploadHandler = async (imagesObj) => {
+    const onUploadHandler = async () => {
         await fetch("http://localhost:5000/api/postDesign", {
             method: 'POST',
             body: JSON.stringify({
                 name: imageDescription,
-                url: imagesObj.info[selectedImagesObj.activeObj.id],
-                color: imagesObj.color,
-                theme: imagesObj.theme,
-                subcategory: imagesObj.subcategory,
+                url: sessionStorage.getItem("data").split(',')[selectedImagesObj.activeObj.id],
+                color: sessionStorage.getItem("color"),
+                theme: sessionStorage.getItem("theme"),
+                subcategory: sessionStorage.getItem("subCategory"),
                 category: 'web design'
             }),
             headers: {
@@ -44,24 +42,13 @@ const Upload = ({form}) => {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                console.log("data: ", data);
                 // Handle data
             })
             .catch((err) => {
                 console.log(err.message);
             });
 
-        // console.log(outputs[selectedImagesObj.activeObj.id]);
-        // const selected = outputs[selectedImagesObj.activeObj.id]
-
-        // setUploadedImageObj({
-        //     name: imageDescription,
-        //     url: selected.url,
-        //     color: selected.color,
-        //     theme: selected.theme,
-        //     subcategory: selected.subcategory,
-        //     category: selected.category
-        // })
     }
 
     return (
@@ -73,7 +60,7 @@ const Upload = ({form}) => {
                 {
                     selectedImagesObj.objects.map((element, index) => (
                         <Grid key={index} className={toggleImageBorderStyle(index)} onClick={() => { toggleSelectedImage(index) }}>
-                            <img src='https://www.researchgate.net/profile/Tao-Chen-87/publication/3935609/figure/fig1/AS:394647298953219@1471102656485/8-bit-256-x-256-Grayscale-Lena-Image.png' />
+                            <img src={sessionStorage.getItem('data').split(',')[index]} />
                         </Grid>
                     ))
                 }
@@ -84,7 +71,7 @@ const Upload = ({form}) => {
                 </Placeholder>
                 <UploadForm className='upload_form'>
                     <UploadInput className='upload_input' placeholder='e.g. green cat with hat' type='text' value={imageDescription} onChange={(e) => onChangeHandler(e.target.value)} />
-                    <UploadButton className='upload_button' onClick={(e) => onUploadHandler()}>
+                    <UploadButton className='upload_button' onClick={(e) => onUploadHandler() }>
                         Upload
                     </UploadButton>
                 </UploadForm>
