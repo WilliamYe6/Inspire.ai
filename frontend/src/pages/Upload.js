@@ -119,7 +119,7 @@ const Grid = styled.div`
     cursor: pointer;
     
     &.with_border {
-        border: solid 2px red;
+        border: solid 2px #2992a7;
     }
 
     &.without_border {

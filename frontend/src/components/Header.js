@@ -38,8 +38,7 @@ const Div = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: lightblue;
-  width: 100%;
+  background-color: #cad6da;
   padding: 1.75em;
 `;
 
@@ -50,7 +49,7 @@ const FormRedirect = styled.div`
   cursor: pointer;
 
   &.red_highlight {
-    color: red
+    color: #2992a7
   }
 
   &.without_highlight {
