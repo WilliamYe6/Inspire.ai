@@ -73,7 +73,7 @@ const Form = ({design, setDesign}) => {
    <Div>
     { !loading ? 
      <ParentForm>
-       Design
+       <H1>Design</H1>
        <FormControl
          style={{
            width: "47%",
@@ -159,6 +159,11 @@ const Form = ({design, setDesign}) => {
    </Div>
  );
 };
+
+const H1 = styled.p`
+border-bottom: 1px solid black
+
+`
  
 const Div = styled.div`
  padding: 20px;
@@ -186,7 +191,11 @@ const ParentForm = styled.div`
  font-size: 40px;
  font-family: "Sono", sans-serif;
  margin: 0 20%;
- padding: 15px;
+ padding: 30px 0;
+ background-color: white;
+ box-shadow: 1px 1px 10px grey;
+ border-radius: 30px;
+ 
 `;
  
 const Category = styled.div`
