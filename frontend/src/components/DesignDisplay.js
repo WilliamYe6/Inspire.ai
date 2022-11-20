@@ -25,12 +25,13 @@ const DesignDisplay = ({url, id, likes, dislikes}) => {
         .then((response) => response.json())
         .then((data) => {
             // console.log(data);
+            setLikes(data.likes)
             // Handle data
         })
         .catch((err) => {
             console.log(err.message);
         });
-        window.location.reload(false)
+        // window.location.reload(false)
     }
 
     const handleDislike = async() => {
@@ -47,19 +48,19 @@ const DesignDisplay = ({url, id, likes, dislikes}) => {
         })
         .then((response) => response.json())
         .then((data) => {
-            // console.log(data);
+            setDislikes(data.dislikes)
             // Handle data
         })
         .catch((err) => {
             console.log(err.message);
         });
-        window.location.reload(false)
+        // window.location.reload(false)
     }
 
   return (
     <ParentContainer>
             <Image src={url} alt="" />
-            <LikeDislike handleLike={handleLike} handleDislike={handleDislike} likes={likes} dislikes={dislikes} />
+            <LikeDislike handleLike={handleLike} handleDislike={handleDislike} likes={_likes} dislikes={_dislikes} />
     </ParentContainer>
   )
 }
