@@ -48,6 +48,28 @@ router.get('/getAllDesigns_date', async (req, res) => {
     }
 })
 
+router.get('/getAllDesigns_inverse', async (req, res) => {
+    try{
+        const data = await Design.find().sort({'likes':-1})
+        // console.log(data)
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
+router.get('/getAllDesigns_date_inverse', async (req, res) => {
+    try{
+        const data = await Design.find().sort({'createdAt':-1})
+        // console.log(data)
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
 //Get by ID Method
 router.get('/getOneDesign/:id', async(req, res) => {
     try{
