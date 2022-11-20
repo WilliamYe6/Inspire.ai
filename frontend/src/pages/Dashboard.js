@@ -24,6 +24,8 @@ const Dashboard = () => {
         //const ratioAlgo = designs.map((design) => design.likes -Math.random())
         //ratioAlgo.sort()
         //const n_designs = ratioAlgo.slice(0, 6) //want objects with this
+
+        
         const shuffled = algo(designs)
         const n_designs = shuffled.slice(0,3)
         setDesigns(n_designs)
