@@ -10,23 +10,40 @@ import {BounceLoader, PacmanLoader} from 'react-spinners'
 
 
 const Form = ({design, setDesign}) => {
+  const [num, setNum] = useState();
+  const [count, setCount] = useState(1);
+
 
   const navigate = useNavigate()
-  const [subCategory, setSubCategory] = useState('');
+  const [subCategory, setSubCategory] = useState('1');
   const [theme, setTheme] = useState('');
   const [color, setColor] = useState('');
   const [site, setSite] = useState('');
   const [loading, setLoading] = useState(false)
   var str = " ";
 
+
   const handleSubmit = async (event) => {
     console.log(color);
 
-    str =  "A high resolution" + color + " " + theme + " " + subCategory + " web design site like " + site;
+  str =  "A high resolution" + color + " " + theme + " " + subCategory + " web design site like " + site;
 
   postString()
 
  };
+
+ const miniGame = (min,max) =>{
+ min = Math.ceil(min);
+max = Math.floor(max);
+return Math.floor(Math.random() * (max - min + 1) + min);
+
+ }
+
+ const handleClick = (e) =>{
+  setCount(count + 1);
+  setNum(miniGame(1, 100));
+ 
+ }
 
  async function postString(){
   setLoading(true)
@@ -61,7 +78,7 @@ const Form = ({design, setDesign}) => {
      })
      .catch((err) => {
         console.log(err.message);
-     });
+     });    
 
 }
 
@@ -129,6 +146,11 @@ const Form = ({design, setDesign}) => {
            <MenuItem value={"facebook"}>Facebook</MenuItem>
          </Select>
          </FormControl>
+         <Button
+         sx={{fontSize: count}}
+         onClick={() => handleClick()}>
+          Guess number between 1-100: {num}
+         </Button>
       
        <Button
        type="submit"
