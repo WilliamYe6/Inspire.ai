@@ -7,87 +7,94 @@ const Upload = () => {
 
     const [selectedImagesObj, setSelectedImagesObj] = useState({
         activeObj: null,
-        objects: [{id: 0}, {id: 1}, {id: 2}]
+        objects: [{ id: 0 }, { id: 1 }, { id: 2 }]
     });
 
     const [uploadedImageObj, setUploadedImageObj] = useState(null);
 
     const toggleSelectedImage = (index) => {
         setSelectedImagesObj({
-            ...selectedImagesObj, 
+            ...selectedImagesObj,
             activeObj: selectedImagesObj.objects[index]
         })
     }
 
     const toggleImageBorderStyle = (index) => {
         return (selectedImagesObj.activeObj === selectedImagesObj.objects[index]) ? 'grid with_border' : 'grid without_border';
-    } 
+    }
 
     const onChangeHandler = (desc) => {
         setImageDescription(desc);
     }
 
-    const onUploadHandler = () => {
-        // mock data: arr of 3 objs
-        const outputs = ["first_url", "second_url", "third_url"];
-
-        if (selectedImagesObj.activeObj === null) {
-            throw "you must select an output, or regenerate outputs";
-        }
-
-        console.log(outputs[selectedImagesObj.activeObj.id]);
-        const selected = outputs[selectedImagesObj.activeObj.id]
-
-        setUploadedImageObj({
-            name: imageDescription,
-            url: selected.url,
-            color: selected.color,
-            theme: selected.theme,
-            subcategory: selected.subcategory,
-            category: selected.category
+    const onUploadHandler = async (imagesObj) => {
+        await fetch("http://localhost:5000/api/postDesign", {
+            method: 'POST',
+            body: JSON.stringify({
+                name: imageDescription,
+                url: imagesObj.info[selectedImagesObj.activeObj.id],
+                color: imagesObj.color,
+                theme: imagesObj.theme,
+                subcategory: imagesObj.subcategory,
+                category: 'web design'
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
         })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                // Handle data
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+
+        // console.log(outputs[selectedImagesObj.activeObj.id]);
+        // const selected = outputs[selectedImagesObj.activeObj.id]
+
+        // setUploadedImageObj({
+        //     name: imageDescription,
+        //     url: selected.url,
+        //     color: selected.color,
+        //     theme: selected.theme,
+        //     subcategory: selected.subcategory,
+        //     category: selected.category
+        // })
     }
 
     return (
-      <UploadContainer className='upload_container'>
-        <UploadTitle className='upload_title'>
-            Select an output:
-        </UploadTitle>
-        <GridContainer className='grid_container'>
-            {/* <Grid className='first_grid' onClick={(e) => {}}>
-                <img src='https://www.researchgate.net/profile/Tao-Chen-87/publication/3935609/figure/fig1/AS:394647298953219@1471102656485/8-bit-256-x-256-Grayscale-Lena-Image.png' />
-            </Grid>
-            <Grid className='second_grid' onClick={(e) => {}}>
-                <img src='https://www.researchgate.net/profile/Tao-Chen-87/publication/3935609/figure/fig1/AS:394647298953219@1471102656485/8-bit-256-x-256-Grayscale-Lena-Image.png' />
-            </Grid>
-            <Grid className='third_grid' onClick={(e) => {}}>
-             <img src='https://www.researchgate.net/profile/Tao-Chen-87/publication/3935609/figure/fig1/AS:394647298953219@1471102656485/8-bit-256-x-256-Grayscale-Lena-Image.png' />
-            </Grid> */}
-            {
-                selectedImagesObj.objects.map((element, index) => (
-                    <Grid key={index} className={toggleImageBorderStyle(index)} onClick={() => {toggleSelectedImage(index) }}>
-                        <img src='https://www.researchgate.net/profile/Tao-Chen-87/publication/3935609/figure/fig1/AS:394647298953219@1471102656485/8-bit-256-x-256-Grayscale-Lena-Image.png' />
-                    </Grid>
-                ))
-            }
-        </GridContainer>
-        <SubmitContainer className='submit_container'>
-            <Placeholder className='placeholder_invisible'>
-                Refresh
-            </Placeholder>
-            <UploadForm className='upload_form'>
-                <UploadInput className='upload_input' placeholder='e.g. green cat with hat' type='text' value={imageDescription} onChange={(e) => onChangeHandler(e.target.value)} />
-                <UploadButton className='upload_button' onClick={(e) => onUploadHandler()}>
-                    Upload
-                </UploadButton>
-            </UploadForm>
-            <RefreshButton className='refresh_button' onSubmit={console.log("refreshed generated outputs")}>
-                Refresh
-            </RefreshButton>
-        </SubmitContainer>
-      </UploadContainer>
+        <UploadContainer className='upload_container'>
+            <UploadTitle className='upload_title'>
+                Select an output:
+            </UploadTitle>
+            <GridContainer className='grid_container'>
+                {
+                    selectedImagesObj.objects.map((element, index) => (
+                        <Grid key={index} className={toggleImageBorderStyle(index)} onClick={() => { toggleSelectedImage(index) }}>
+                            <img src='https://www.researchgate.net/profile/Tao-Chen-87/publication/3935609/figure/fig1/AS:394647298953219@1471102656485/8-bit-256-x-256-Grayscale-Lena-Image.png' />
+                        </Grid>
+                    ))
+                }
+            </GridContainer>
+            <SubmitContainer className='submit_container'>
+                <Placeholder className='placeholder_invisible'>
+                    Refresh
+                </Placeholder>
+                <UploadForm className='upload_form'>
+                    <UploadInput className='upload_input' placeholder='e.g. green cat with hat' type='text' value={imageDescription} onChange={(e) => onChangeHandler(e.target.value)} />
+                    <UploadButton className='upload_button' onClick={(e) => onUploadHandler()}>
+                        Upload
+                    </UploadButton>
+                </UploadForm>
+                <RefreshButton className='refresh_button' onSubmit={console.log("refreshed generated outputs")}>
+                    Refresh
+                </RefreshButton>
+            </SubmitContainer>
+        </UploadContainer>
     )
-  }
+}
 
 const UploadContainer = styled.div`
     display: flex;
