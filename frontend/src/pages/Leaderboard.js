@@ -52,7 +52,7 @@ const Leaderboard = () => {
     }
     return (
       <Div>
-        <Title>Leaderboard!!</Title>
+        <Title>INSPIRE</Title>
         <DesignContainer designs={designs} />
       </Div>
     )
@@ -65,9 +65,10 @@ const Leaderboard = () => {
     flex-direction: column;
   `
   const Title = styled.h1`
+    margin:30px;
+    /* font-family: 'Lato'; */
     font-size: 50px;
-    margin: 50px;
-  
+   
   
   `
   
