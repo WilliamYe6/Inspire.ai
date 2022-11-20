@@ -109,13 +109,12 @@ const Form = ({design, setDesign}) => {
        >
          <InputLabel id="demo-simple-select-label">Color Theme</InputLabel>
          <Select onChange={(e) => setColor(e.target.value)}>
-           <MenuItem value={"Black"}>Black</MenuItem>
-           <MenuItem value={"White"}>White</MenuItem>
-           <MenuItem value={"Orange"}>Orange</MenuItem>
-           <MenuItem value={"Brown"}>Brown</MenuItem>
+           <MenuItem value={"vibrant"}>Vibrant</MenuItem>
+           <MenuItem value={"spooky"}> Spooky</MenuItem>
+           <MenuItem value={"sombre"}>Sombre</MenuItem>
+           <MenuItem value={"rich"}>Rich</MenuItem>
          </Select>
        </FormControl>
-
 
        <FormControl
         style={{
@@ -130,6 +129,7 @@ const Form = ({design, setDesign}) => {
            <MenuItem value={"facebook"}>Facebook</MenuItem>
          </Select>
          </FormControl>
+      
        <Button
        type="submit"
        onClick={() => {
