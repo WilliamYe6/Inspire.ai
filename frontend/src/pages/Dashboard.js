@@ -18,6 +18,7 @@ const Dashboard = () => {
         }
     
         const designs = await response.json();
+
         const n_designs = designs.slice(0, 3)
     
         setDesigns(n_designs);

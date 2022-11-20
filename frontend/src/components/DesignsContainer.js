@@ -4,7 +4,7 @@ import DesignDisplay from './DesignDisplay'
 
 const DesignsContainer = ({designs}) => {
 
-    const containerItems = designs.map((design, i) => 
+    const containerItems = designs.map((design, i, id, likes, dislikes) => 
         <DesignDisplay url={design.url} key={i} id={design._id} likes={design.likes} dislikes={design.dislikes}/>
     )
 
