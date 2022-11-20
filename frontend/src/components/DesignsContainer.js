@@ -4,7 +4,7 @@ import DesignDisplay from './DesignDisplay'
 
 const DesignsContainer = ({designs}) => {
 
-    const containerItems = designs.map((design, i) => 
+    const containerItems = designs.map((design, i, id, likes, dislikes) => 
         <DesignDisplay url={design.url} key={i} id={design._id} likes={design.likes} dislikes={design.dislikes}/>
     )
 
@@ -16,6 +16,7 @@ const DesignsContainer = ({designs}) => {
 }
 const Container = styled.div`
     display:flex;
+    flex-wrap: wrap;
     align-items:center;
     justify-content: space-between;
     flex-direction:row;
