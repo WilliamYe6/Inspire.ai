@@ -22,7 +22,7 @@ const Form = ({design, setDesign}) => {
   const handleSubmit = async (event) => {
     console.log(color);
 
-    str =  "A " + color + " " + theme + " " + subCategory + " web design site like " + site;
+    str =  "A high resolution" + color + " " + theme + " " + subCategory + " web design site like " + site;
 
   postString()
 
