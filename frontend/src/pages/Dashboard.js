@@ -6,6 +6,7 @@ import DesignContainer from '../components/DesignsContainer'
 const Dashboard = () => {
 
   const [designs, setDesigns] = useState([])
+  
 
   useEffect(() => {
     async function getDesigns(){
@@ -16,11 +17,16 @@ const Dashboard = () => {
         window.alert(message);
         return;
         }
-    
+        
         const designs = await response.json();
-        const n_designs = designs.slice(0, 3)
-    
-        setDesigns(n_designs);
+       
+        
+        //const ratioAlgo = designs.map((design) => design.likes -Math.random())
+        //ratioAlgo.sort()
+        //const n_designs = ratioAlgo.slice(0, 6) //want objects with this
+        const shuffled = algo(designs)
+        const n_designs = shuffled.slice(0,6)
+        setDesigns(n_designs)
         console.log(n_designs)
     }
     
@@ -30,6 +36,16 @@ const Dashboard = () => {
     return;
   }, [])
 
+  const algo = (arr) => {
+    for (var i = 0; i < arr.length - 1; i++) {
+      var j = i + Math.floor(Math.random() * (arr.length - i));
+
+      var temp = arr[j];
+      arr[j] = arr[i];
+      arr[i] = temp;
+  }
+  return arr;
+  }
   return (
     <Div>
       <Title>VOTE ON THESE DESIGNS</Title>
